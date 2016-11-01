@@ -8,13 +8,11 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import pl.edu.agh.kis.retrofit2demo.httpclient.Gateway;
+import pl.edu.agh.kis.retrofit2demo.httpclient.StudentsService;
 import pl.edu.agh.kis.retrofit2demo.model.Student;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,15 +34,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getStudents() {
-        Retrofit retrofit = new Retrofit
-                .Builder()
-                .baseUrl("http://analyzer-asp2016.rhcloud.com/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
 
-        Gateway gateway = retrofit.create(Gateway.class);
+        StudentsService studentsService = StudentsService.retrofit.create(StudentsService.class);
 
-        Call<List<Student>> call = gateway.getStudents();
+        Call<List<Student>> call = studentsService.getStudents();
 
         call.enqueue(new Callback<List<Student>>() {
             @Override
@@ -67,5 +60,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "ERROR!", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 }
