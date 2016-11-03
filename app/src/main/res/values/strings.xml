@@ -4,4 +4,6 @@
     <string name="editMenuItemLabel">Edit</string>
     <string name="removeMenuItemLabel">Remove</string>
     <string name="overflowButtonContentDescription">Menu</string>
+    <string name="studentDialogNameHint">Name</string>
+    <string name="studentDialogLanguageHint">Language</string>
 </resources>

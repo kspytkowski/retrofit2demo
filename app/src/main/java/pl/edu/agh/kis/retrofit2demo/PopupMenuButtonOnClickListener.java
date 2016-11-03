@@ -1,13 +1,12 @@
 package pl.edu.agh.kis.retrofit2demo;
 
-import android.app.AlertDialog;
+import android.app.FragmentManager;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.support.v7.view.menu.MenuBuilder;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
 
+import pl.edu.agh.kis.retrofit2demo.httpclient.StudentsService;
 import pl.edu.agh.kis.retrofit2demo.model.Student;
 
 /**
@@ -16,10 +15,14 @@ import pl.edu.agh.kis.retrofit2demo.model.Student;
 public class PopupMenuButtonOnClickListener implements View.OnClickListener {
     private final Student student;
     private final Context context;
+    private final FragmentManager fragmentManager;
+    private final StudentsService service;
 
-    public PopupMenuButtonOnClickListener(Context context, Student student) {
+    public PopupMenuButtonOnClickListener(Context context, Student student, FragmentManager fragmentManager, StudentsService service) {
         this.context = context;
         this.student = student;
+        this.fragmentManager = fragmentManager;
+        this.service = service;
     }
 
     @Override
@@ -31,18 +34,11 @@ public class PopupMenuButtonOnClickListener implements View.OnClickListener {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.editPopupMenuItem:
-                        //TODO create edit dialog
-                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-                        alertDialogBuilder.setTitle(student.getName());
-                        alertDialogBuilder.setMessage(student.toStringDetailed());
-                        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                            }
-                        });
-                        AlertDialog alertDialog = alertDialogBuilder.create();
-                        alertDialog.show();
+                        StudentEditDialog sde = StudentEditDialog.newInstance(student, service);
+                        sde.show(fragmentManager, "editDialog");
                         return true;
                     case R.id.removePopupMenuItem:
+                        //TODO use service to remove student
                         return true;
                     default:
                         return true;
