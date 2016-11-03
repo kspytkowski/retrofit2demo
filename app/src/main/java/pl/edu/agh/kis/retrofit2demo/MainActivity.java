@@ -1,11 +1,22 @@
 package pl.edu.agh.kis.retrofit2demo;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import pl.edu.agh.kis.retrofit2demo.httpclient.StudentsService;
@@ -17,6 +28,12 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     Button btnGetAllStudents;
+
+    ListView lv;
+
+    CustomListViewAdapter adapter;
+
+    List<Student> items = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +48,28 @@ public class MainActivity extends AppCompatActivity {
                 getStudents();
             }
         });
+
+        lv = (ListView) findViewById(R.id.studentsListView);
+
+        adapter = new CustomListViewAdapter(this, R.layout.list_item, R.id.studentListItemTextView, items);
+        lv.setAdapter(adapter);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Student item = (Student) adapterView.getItemAtPosition(i);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+                alertDialogBuilder.setTitle(item.getName());
+                alertDialogBuilder.setMessage(item.toStringDetailed());
+                alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+//                alertDialog.dismiss();
+            }
+        });
     }
 
     private void getStudents() {
@@ -43,16 +82,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
                 List<Student> students = response.body();
-                String result = "";
-                for (int i = 0; i < students.size(); i++) {
-                    String id = students.get(i).getId();
-                    String name = students.get(i).getName();
-                    String language = students.get(i).getLanguage();
-                    result += "Id: " + id + "\n" +
-                            "Name: " + name + "\n" +
-                            "Language: " + language + "\n\n";
-                }
-                Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
+                items.addAll(students);
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -62,4 +93,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    /*public void showPopup(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        popup.inflate(R.menu.popup_menu);
+//        MenuInflater inflater = popup.getMenuInflater();
+//        inflater.inflate(R.menu.popup_menu, popup.getMenu());
+        popup.show();
+    }*/
+
 }

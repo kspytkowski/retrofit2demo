@@ -11,11 +11,20 @@
     tools:context="pl.edu.agh.kis.retrofit2demo.MainActivity">
 
     <Button
-        android:text="Get Students"
+        android:text="@string/get_students_btn_val"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="48dp"
         android:id="@+id/btnGetAllStudents" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/btnGetAllStudents"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/studentsListView"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false" />
 </RelativeLayout>

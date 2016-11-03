@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">retrofit2demo</string>
+    <string name="get_students_btn_val">Get Students</string>
+    <string name="editMenuItemLabel">Edit</string>
+    <string name="removeMenuItemLabel">Remove</string>
+    <string name="overflowButtonContentDescription">Menu</string>
 </resources>

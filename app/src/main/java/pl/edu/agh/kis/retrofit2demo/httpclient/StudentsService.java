@@ -14,9 +14,6 @@ public interface StudentsService {
     @GET("students")
     Call<List<Student>> getStudents();
 
-    @GET("students/{studentName}")
-    Call<Student> getStudent(@Path("studentName") String studentName);
-
     Retrofit retrofit = new Retrofit
             .Builder()
             .baseUrl("http://analyzer-asp2016.rhcloud.com/api/")
