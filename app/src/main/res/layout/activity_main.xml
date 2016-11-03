@@ -10,21 +10,32 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="pl.edu.agh.kis.retrofit2demo.MainActivity">
 
-    <Button
-        android:text="@string/get_students_btn_val"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="48dp"
-        android:id="@+id/btnGetAllStudents" />
-
-    <ListView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/btnGetAllStudents"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/studentsListView"
-        android:footerDividersEnabled="false"
-        android:headerDividersEnabled="false" />
+        android:layout_height="match_parent">
+
+        <Button
+            android:text="@string/add_student_btn_val"
+            android:onClick="showNewStudentDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/addStudentBtn"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:text="@string/get_students_btn_val"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnGetAllStudents"
+            android:layout_gravity="center"/>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/studentsListView"
+            android:footerDividersEnabled="false"
+            android:headerDividersEnabled="false" />
+    </LinearLayout>
+
 </RelativeLayout>

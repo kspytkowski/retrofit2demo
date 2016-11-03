@@ -59,14 +59,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void getStudents() {
         Call<List<Student>> call = studentsService.getStudents();
-
         call.enqueue(new Callback<List<Student>>() {
             @Override
             public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
                 List<Student> students = response.body();
-                items.clear();
-                items.addAll(students);
-                adapter.notifyDataSetChanged();
+                processListOfStudents(students);
             }
 
             @Override
@@ -75,6 +72,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void processListOfStudents(List<Student> students) {
+        items.clear();
+        items.addAll(students);
+        adapter.notifyDataSetChanged();
+    }
+
+    public void showNewStudentDialog(View view) {
+        StudentEditDialog sed = StudentEditDialog.newInstance(new Student(), studentsService);
+        sed.show(fm, "newStudentDialog");
     }
 
 }

@@ -3,8 +3,8 @@ package pl.edu.agh.kis.retrofit2demo.model;
 public class Student {
 
     private String id;
-    private String name;
-    private String language;
+    private String name = "";
+    private String language = "";
 
     public Student() {
     }

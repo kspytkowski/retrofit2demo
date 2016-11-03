@@ -6,4 +6,5 @@
     <string name="overflowButtonContentDescription">Menu</string>
     <string name="studentDialogNameHint">Name</string>
     <string name="studentDialogLanguageHint">Language</string>
+    <string name="add_student_btn_val">Add student</string>
 </resources>

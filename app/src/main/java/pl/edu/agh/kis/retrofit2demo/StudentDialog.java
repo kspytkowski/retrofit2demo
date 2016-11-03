@@ -3,7 +3,6 @@ package pl.edu.agh.kis.retrofit2demo;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.DialogInterface;
 import android.os.Bundle;
 
 import pl.edu.agh.kis.retrofit2demo.model.Student;
@@ -31,10 +30,7 @@ public class StudentDialog extends DialogFragment {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
         alertDialogBuilder.setTitle(student.getName());
         alertDialogBuilder.setMessage(student.toStringDetailed());
-        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-            }
-        });
+        alertDialogBuilder.setPositiveButton("OK", null);
         return alertDialogBuilder.create();
     }
 }
