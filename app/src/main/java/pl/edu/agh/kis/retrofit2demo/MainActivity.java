@@ -1,8 +1,6 @@
 package pl.edu.agh.kis.retrofit2demo;
 
-import android.app.AlertDialog;
 import android.app.FragmentManager;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -22,24 +20,20 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnGetAllStudents;
+    private CustomListViewAdapter<Student> adapter;
 
-    ListView lv;
+    private List<Student> items = new ArrayList<>();
 
-    CustomListViewAdapter<Student> adapter;
+    private StudentsService studentsService = StudentsService.retrofit.create(StudentsService.class);
 
-    List<Student> items = new ArrayList<>();
-
-    StudentsService studentsService = StudentsService.retrofit.create(StudentsService.class);
-
-    FragmentManager fm = getFragmentManager();
+    private FragmentManager fm = getFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnGetAllStudents = (Button) findViewById(R.id.btnGetAllStudents);
+        Button btnGetAllStudents = (Button) findViewById(R.id.btnGetAllStudents);
 
         btnGetAllStudents.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        lv = (ListView) findViewById(R.id.studentsListView);
+        ListView lv = (ListView) findViewById(R.id.studentsListView);
 
         adapter = new CustomListViewAdapter<>(this, R.layout.list_item, R.id.studentListItemTextView, items, fm, studentsService);
         lv.setAdapter(adapter);
