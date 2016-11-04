@@ -3,6 +3,7 @@ package pl.edu.agh.kis.retrofit2demo;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,12 +14,15 @@ import android.widget.Toast;
 
 import pl.edu.agh.kis.retrofit2demo.httpclient.StudentsService;
 import pl.edu.agh.kis.retrofit2demo.model.Student;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class StudentEditDialog extends DialogFragment {
 
     private Student student;
-
     private StudentsService service;
+    private Context context;
 
     public void setStudent(Student student) {
         this.student = student;
@@ -28,12 +32,16 @@ public class StudentEditDialog extends DialogFragment {
         this.service = service;
     }
 
-    public StudentEditDialog() {
-
+    public void setContext(Context context) {
+        this.context = context;
     }
 
-    public static StudentEditDialog newInstance(Student student, StudentsService service) {
+    public StudentEditDialog() {
+    }
+
+    public static StudentEditDialog newInstance(Context context, Student student, StudentsService service) {
         StudentEditDialog sed = new StudentEditDialog();
+        sed.setContext(context);
         sed.setStudent(student);
         sed.setService(service);
         return sed;
@@ -44,7 +52,6 @@ public class StudentEditDialog extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         builder.setTitle("Edit " + student.getName());
-
         final View dialogView = inflater.inflate(R.layout.student_dialog, null);
         ((EditText) dialogView.findViewById(R.id.studentNameEditText)).append(student.getName());
         ((EditText) dialogView.findViewById(R.id.studentLanguageEditText)).append(student.getLanguage());
@@ -66,7 +73,7 @@ public class StudentEditDialog extends DialogFragment {
                     public void onClick(View view) {
                         EditText studentNameEdit = (EditText) dialogView.findViewById(R.id.studentNameEditText);
                         EditText studentLanguageEdit = (EditText) dialogView.findViewById(R.id.studentLanguageEditText);
-                        if (fieldNotEmpty(studentNameEdit) && fieldNotEmpty(studentLanguageEdit)) {
+                        if (isFieldNotEmpty(studentNameEdit) && isFieldNotEmpty(studentLanguageEdit)) {
                             student.setName(studentNameEdit.getText().toString());
                             student.setLanguage(studentLanguageEdit.getText().toString());
                             saveStudent(student);
@@ -81,12 +88,40 @@ public class StudentEditDialog extends DialogFragment {
         return ad;
     }
 
-    private void saveStudent(Student student) {
+    private void saveStudent(final Student student) {
         //TODO use service to save student - decide whether you should update existing record, or add new one
         //hint - think about id field :v
+        if (student.getId() == null) {
+            Call<Student> call = service.createStudent(student);
+            call.enqueue(new Callback<Student>() {
+                @Override
+                public void onResponse(Call<Student> call, Response<Student> response) {
+                    Student createdStudent = response.body();
+                    Toast.makeText(context, "Created student: " + createdStudent, Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(Call<Student> call, Throwable t) {
+                    Toast.makeText(context, "ERROR! Could not create student: " + student, Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Call<Student> call = service.updateStudent(student.getId(), student);
+            call.enqueue(new Callback<Student>() {
+                @Override
+                public void onResponse(Call<Student> call, Response<Student> response) {
+                    Toast.makeText(context, "Updated student: " + student, Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(Call<Student> call, Throwable t) {
+                    Toast.makeText(context, "ERROR! Could not update student: " + student, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
-    private boolean fieldNotEmpty(EditText field) {
+    private boolean isFieldNotEmpty(EditText field) {
         return !field.getText().toString().trim().isEmpty();
     }
 }

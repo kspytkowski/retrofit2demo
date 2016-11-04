@@ -9,14 +9,15 @@ import android.widget.Toast;
 
 import pl.edu.agh.kis.retrofit2demo.httpclient.StudentsService;
 import pl.edu.agh.kis.retrofit2demo.model.Student;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PopupMenuButtonOnClickListener implements View.OnClickListener {
     private final Student student;
     private final Context context;
     private final FragmentManager fragmentManager;
     private final StudentsService service;
-
-    private static final String AUTH_KEY = "tajnehaslo";
 
     public PopupMenuButtonOnClickListener(Context context, Student student, FragmentManager fragmentManager, StudentsService service) {
         this.context = context;
@@ -28,32 +29,39 @@ public class PopupMenuButtonOnClickListener implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         PopupMenu popupMenu = new PopupMenu(context, view);
-
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.editPopupMenuItem:
-                        StudentEditDialog sde = StudentEditDialog.newInstance(student, service);
+                        StudentEditDialog sde = StudentEditDialog.newInstance(context, student, service);
                         sde.show(fragmentManager, "editDialog");
                         return true;
                     case R.id.removePopupMenuItem:
-                        deleteStudent(student, AUTH_KEY);
+                        deleteStudent(student);
                         return true;
                     default:
                         return true;
                 }
             }
         });
-
         popupMenu.inflate(R.menu.popup_menu);
-
         popupMenu.show();
     }
 
-    private void deleteStudent(Student student, String authKey) {
+    private void deleteStudent(final Student student) {
         //TODO use service to remove student
-        //remember that remove has to have our authKey inside header
-        Toast.makeText(context, "Remove student: " + student.toString(), Toast.LENGTH_SHORT).show();
+        Call<Student> call = service.deleteStudent(student.getId());
+        call.enqueue(new Callback<Student>() {
+            @Override
+            public void onResponse(Call<Student> call, Response<Student> response) {
+                Toast.makeText(context, "Removed student: " + student, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Student> call, Throwable t) {
+                Toast.makeText(context, "ERROR! Could not remove student: " + student, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
