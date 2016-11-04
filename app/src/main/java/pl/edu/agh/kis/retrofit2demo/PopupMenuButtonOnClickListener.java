@@ -10,9 +10,6 @@ import android.widget.Toast;
 import pl.edu.agh.kis.retrofit2demo.httpclient.StudentsService;
 import pl.edu.agh.kis.retrofit2demo.model.Student;
 
-/**
- * Created by Jakub Fortunka on 03.11.2016.
- */
 public class PopupMenuButtonOnClickListener implements View.OnClickListener {
     private final Student student;
     private final Context context;
@@ -56,7 +53,7 @@ public class PopupMenuButtonOnClickListener implements View.OnClickListener {
 
     private void deleteStudent(Student student, String authKey) {
         //TODO use service to remove student
-        //remember that remove have to have our authKey inside header
+        //remember that remove has to have our authKey inside header
         Toast.makeText(context, "Remove student: " + student.toString(), Toast.LENGTH_SHORT).show();
     }
 }

@@ -13,10 +13,6 @@ import java.util.List;
 import pl.edu.agh.kis.retrofit2demo.httpclient.StudentsService;
 import pl.edu.agh.kis.retrofit2demo.model.Student;
 
-/**
- * Created by Jakub Fortunka on 03.11.2016.
- */
-
 public class CustomListViewAdapter<T> extends ArrayAdapter<T> {
 
     private FragmentManager fragmentManager;

@@ -33,16 +33,6 @@ public class Student {
         this.language = language;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Student{" +
-//                "id='" + id + '\'' +
-//                ", name='" + name + '\'' +
-//                ", language='" + language + '\'' +
-//                '}';
-//    }
-
-
     @Override
     public String toString() {
         return name;

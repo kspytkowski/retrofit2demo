@@ -7,10 +7,6 @@ import android.os.Bundle;
 
 import pl.edu.agh.kis.retrofit2demo.model.Student;
 
-/**
- * Created by Jakub Fortunka on 03.11.2016.
- */
-
 public class StudentDialog extends DialogFragment {
 
     private Student student;

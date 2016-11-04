@@ -84,5 +84,4 @@ public class MainActivity extends AppCompatActivity {
         StudentEditDialog sed = StudentEditDialog.newInstance(new Student(), studentsService);
         sed.show(fm, "newStudentDialog");
     }
-
 }
