@@ -56,7 +56,5 @@ public interface StudentsService {
     //  przyjmować jako parametr id studenta i zwracać obiekt typu Call parametryzowany Studentem.
     //  Pamiętaj o konieczności dołączenia nagłówka Auth z wartością secret.
     //  DELETE http://analyzer-asp2016.rhcloud.com/api/students/{id} + Header "Auth: secret"
-    @DELETE("students/{id}")
-    @Headers("Auth: secret")
-    Call<Student> deleteStudent(@Path("id") String id);
+
 }
