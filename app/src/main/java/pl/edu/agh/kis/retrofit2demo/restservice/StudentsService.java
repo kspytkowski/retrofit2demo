@@ -18,16 +18,17 @@ import retrofit2.http.QueryMap;
 
 public interface StudentsService {
 
-    //    TODO ćw.1
-    //    Stwórz obiekt typu Retrofit, jako bazowy URL podaj "http://analyzer-asp2016.rhcloud.com/api/",
-    //    natomiast do konwersji obiekt javowy <-> JSON zastosuj Gson'a.
+    //    TODO ćw.1.a
+    //    Stwórz obiekt typu Retrofit (referencję nazwij retrofit), jako bazowy URL podaj
+    //    "http://analyzer-asp2016.rhcloud.com/api/", natomiast do konwersji obiekt javowy <-> JSON
+    //    zastosuj Gson'a.
     Retrofit retrofit = new Retrofit
             .Builder()
             .baseUrl("http://analyzer-asp2016.rhcloud.com/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
-    //  TODO ćw.1
+    //  TODO ćw.1.c
     //  Napisz sygnaturę metody odpowiedzialnej za pobieranie listy studentów. Metoda powinna
     //  przyjmować mapę parametrów dołączanych do bazowego URLa, natomiast zwaracać obiekt
     //  typu Call parametryzowany listą studentów.

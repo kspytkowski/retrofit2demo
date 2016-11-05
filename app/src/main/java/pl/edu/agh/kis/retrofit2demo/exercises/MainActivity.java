@@ -27,7 +27,9 @@ public class MainActivity extends AppCompatActivity {
 
     private CustomListViewAdapter<Student> adapter;
     private List<Student> items = new ArrayList<>();
-    private StudentsService studentsService = StudentsService.retrofit.create(StudentsService.class);
+    //    TODO ćw.1.b
+    //    Podejrzyj (CTRL + spacja na nazwie metody) opis i zachowanie metody create.
+    private StudentsService service = StudentsService.retrofit.create(StudentsService.class);
     private FragmentManager fm = getFragmentManager();
 
     @Override
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         ListView lv = (ListView) findViewById(R.id.studentsListView);
-        adapter = new CustomListViewAdapter<>(this, R.layout.list_item, R.id.studentListItemTextView, items, fm, studentsService);
+        adapter = new CustomListViewAdapter<>(this, R.layout.list_item, R.id.studentListItemTextView, items, fm, service);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getStudents() {
-//        TODO ćw.1
+//        TODO ćw.1.c
 //        Stwórz mapę parametrów dołączanych do bazowego URLa i umieść w niej wpis pozwalający
 //        na pobieranie listy studentów (po ich imionach) w kolejności alfabetycznej (od A do Z).
 //        Mapę tę przekaż do odpowiedniej metody z StudentsService (GET):
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 //        b) w przypadku błędu - wyświetl użytkownikowi stosowną informację (użyj Toast)
         Map<String, String> options = new HashMap<>();
         options.put("sort", "asc"); //asc or desc or anything (no order)
-        Call<List<Student>> call = studentsService.getStudents(options);
+        Call<List<Student>> call = service.getStudents(options);
         call.enqueue(new Callback<List<Student>>() {
             @Override
             public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
@@ -86,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showNewStudentDialog(View view) {
-        StudentEditDialog sed = StudentEditDialog.newInstance(MainActivity.this, new Student(), studentsService);
+        StudentEditDialog sed = StudentEditDialog.newInstance(MainActivity.this, new Student(), service);
         sed.show(fm, "newStudentDialog");
     }
 }
