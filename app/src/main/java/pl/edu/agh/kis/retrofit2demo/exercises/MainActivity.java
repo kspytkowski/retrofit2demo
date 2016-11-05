@@ -57,13 +57,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getStudents() {
-    //  TODO ćw.1.c
-    //  Stwórz mapę parametrów dołączanych do bazowego URLa i umieść w niej wpis pozwalający
-    //  na pobieranie listy studentów (po ich imionach) w kolejności alfabetycznej (od A do Z).
-    //  Mapę tę przekaż do odpowiedniej metody z StudentsService (GET):
-    //  a) w przypadku sukcesu - wyłuskaj listę studentów z odpowiedzi i przekaż ją do dalszego
-    //  procesowania do metody processListOfStudents(List<Student> students)
-    //  b) w przypadku błędu - wyświetl użytkownikowi stosowną informację (użyj Toast)
+        //  TODO ćw.1.c
+        //  Stwórz mapę parametrów dołączanych do bazowego URLa i umieść w niej wpis pozwalający
+        //  na pobieranie listy studentów (po ich imionach) w kolejności alfabetycznej (od A do Z).
+        //  Mapę tę przekaż do odpowiedniej metody z StudentsService (GET):
+        //  a) w przypadku sukcesu - wyłuskaj listę studentów z odpowiedzi i przekaż ją do dalszego
+        //  procesowania do metody processListOfStudents(List<Student> students)
+        //  b) w przypadku błędu - wyświetl użytkownikowi stosowną informację (użyj Toast)
         Map<String, String> options = new HashMap<>();
         options.put("sort", "asc"); //asc or desc or anything (no order)
         Call<List<Student>> call = service.getStudents(options);
