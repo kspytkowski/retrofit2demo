@@ -64,21 +64,7 @@ public class MainActivity extends AppCompatActivity {
     //  a) w przypadku sukcesu - wyłuskaj listę studentów z odpowiedzi i przekaż ją do dalszego
     //  procesowania do metody processListOfStudents(List<Student> students)
     //  b) w przypadku błędu - wyświetl użytkownikowi stosowną informację (użyj Toast)
-        Map<String, String> options = new HashMap<>();
-        options.put("sort", "asc"); //asc or desc or anything (no order)
-        Call<List<Student>> call = service.getStudents(options);
-        call.enqueue(new Callback<List<Student>>() {
-            @Override
-            public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
-                List<Student> students = response.body();
-                processListOfStudents(students);
-            }
 
-            @Override
-            public void onFailure(Call<List<Student>> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "ERROR! Could not get students from server", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     private void processListOfStudents(List<Student> students) {

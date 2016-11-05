@@ -22,19 +22,12 @@ public interface StudentsService {
     //  Stwórz obiekt typu Retrofit (referencję nazwij retrofit), jako bazowy URL podaj
     //  "http://analyzer-asp2016.rhcloud.com/api/", natomiast do konwersji obiekt javowy <-> JSON
     //  zastosuj Gson'a.
-    Retrofit retrofit = new Retrofit
-            .Builder()
-            .baseUrl("http://analyzer-asp2016.rhcloud.com/api/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build();
 
     //  TODO ćw.1.c
     //  Napisz sygnaturę metody odpowiedzialnej za pobieranie listy studentów. Metoda powinna
     //  przyjmować mapę parametrów dołączanych do bazowego URLa, natomiast zwaracać obiekt
     //  typu Call parametryzowany listą studentów.
     //  GET http://analyzer-asp2016.rhcloud.com/api/students?sort=[asc/desc/anything(brak sortowania)]
-    @GET("students")
-    Call<List<Student>> getStudents(@QueryMap Map<String, String> options);
 
     //  TODO ćw.2
     //  Napisz sygnaturę metody odpowiedzialnej za tworzenie nowego studenta. Metoda powinna
