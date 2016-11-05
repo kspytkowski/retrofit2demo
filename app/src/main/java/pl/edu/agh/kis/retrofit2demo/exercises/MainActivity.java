@@ -7,21 +7,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import pl.edu.agh.kis.retrofit2demo.R;
 import pl.edu.agh.kis.retrofit2demo.model.Student;
 import pl.edu.agh.kis.retrofit2demo.restservice.StudentsService;
 import pl.edu.agh.kis.retrofit2demo.ui.CustomListViewAdapter;
 import pl.edu.agh.kis.retrofit2demo.ui.StudentDialog;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,13 +51,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getStudents() {
-    //  TODO ćw.1.c
-    //  Stwórz mapę parametrów dołączanych do bazowego URLa i umieść w niej wpis pozwalający
-    //  na pobieranie listy studentów (po ich imionach) w kolejności alfabetycznej (od A do Z).
-    //  Mapę tę przekaż do odpowiedniej metody z StudentsService (GET):
-    //  a) w przypadku sukcesu - wyłuskaj listę studentów z odpowiedzi i przekaż ją do dalszego
-    //  procesowania do metody processListOfStudents(List<Student> students)
-    //  b) w przypadku błędu - wyświetl użytkownikowi stosowną informację (użyj Toast)
+        //  TODO ćw.1.c
+        //  Stwórz mapę parametrów dołączanych do bazowego URLa i umieść w niej wpis pozwalający
+        //  na pobieranie listy studentów (po ich imionach) w kolejności alfabetycznej (od A do Z).
+        //  Mapę tę przekaż do odpowiedniej metody z StudentsService (GET):
+        //  a) w przypadku sukcesu - wyłuskaj listę studentów z odpowiedzi i przekaż ją do dalszego
+        //  procesowania do metody processListOfStudents(List<Student> students)
+        //  b) w przypadku błędu - wyświetl użytkownikowi stosowną informację (użyj Toast)
 
     }
 

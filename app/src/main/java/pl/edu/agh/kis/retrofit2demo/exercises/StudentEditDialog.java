@@ -15,9 +15,6 @@ import android.widget.Toast;
 import pl.edu.agh.kis.retrofit2demo.R;
 import pl.edu.agh.kis.retrofit2demo.model.Student;
 import pl.edu.agh.kis.retrofit2demo.restservice.StudentsService;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class StudentEditDialog extends DialogFragment {
 
@@ -90,11 +87,11 @@ public class StudentEditDialog extends DialogFragment {
     }
 
     private void saveStudent(final Student student) {
-    //  TODO ćw.2
-    //  Wywołaj odpowiednie metody z StudentsService (POST, PUT) i wyświetl użytkownikowi informację
-    //  o sukcesie lub zaistniałym błędzie (użyj Toast). Musisz tutaj zdecydować czy będziesz
-    //  tworzył nowego Studenta, czy może edytował już istniejącego (pomocne może okazać się pole
-    //  id klasy Student)
+        //  TODO ćw.2
+        //  Wywołaj odpowiednie metody z StudentsService (POST, PUT) i wyświetl użytkownikowi informację
+        //  o sukcesie lub zaistniałym błędzie (użyj Toast). Musisz tutaj zdecydować czy będziesz
+        //  tworzył nowego Studenta, czy może edytował już istniejącego (pomocne może okazać się pole
+        //  id klasy Student)
 
     }
 
