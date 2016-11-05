@@ -1,4 +1,4 @@
-package pl.edu.agh.kis.retrofit2demo;
+package pl.edu.agh.kis.retrofit2demo.exercises;
 
 import android.app.FragmentManager;
 import android.os.Bundle;
@@ -14,8 +14,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import pl.edu.agh.kis.retrofit2demo.httpclient.StudentsService;
+import pl.edu.agh.kis.retrofit2demo.R;
 import pl.edu.agh.kis.retrofit2demo.model.Student;
+import pl.edu.agh.kis.retrofit2demo.restservice.StudentsService;
+import pl.edu.agh.kis.retrofit2demo.ui.CustomListViewAdapter;
+import pl.edu.agh.kis.retrofit2demo.ui.StudentDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

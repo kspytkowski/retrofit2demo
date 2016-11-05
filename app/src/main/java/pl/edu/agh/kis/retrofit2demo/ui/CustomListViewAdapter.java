@@ -1,4 +1,4 @@
-package pl.edu.agh.kis.retrofit2demo;
+package pl.edu.agh.kis.retrofit2demo.ui;
 
 import android.app.FragmentManager;
 import android.support.annotation.NonNull;
@@ -10,8 +10,11 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import pl.edu.agh.kis.retrofit2demo.httpclient.StudentsService;
+import pl.edu.agh.kis.retrofit2demo.R;
+import pl.edu.agh.kis.retrofit2demo.exercises.MainActivity;
+import pl.edu.agh.kis.retrofit2demo.exercises.PopupMenuButtonOnClickListener;
 import pl.edu.agh.kis.retrofit2demo.model.Student;
+import pl.edu.agh.kis.retrofit2demo.restservice.StudentsService;
 
 public class CustomListViewAdapter<T> extends ArrayAdapter<T> {
 

@@ -1,4 +1,4 @@
-package pl.edu.agh.kis.retrofit2demo;
+package pl.edu.agh.kis.retrofit2demo.exercises;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -12,8 +12,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import pl.edu.agh.kis.retrofit2demo.httpclient.StudentsService;
+import pl.edu.agh.kis.retrofit2demo.R;
 import pl.edu.agh.kis.retrofit2demo.model.Student;
+import pl.edu.agh.kis.retrofit2demo.restservice.StudentsService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -96,32 +97,26 @@ public class StudentEditDialog extends DialogFragment {
 //        id klasy Student)
         if (student.getId() == null) {
             Call<Student> call = service.createStudent(student);
-            call.enqueue(new Callback<Student>() {
-                @Override
-                public void onResponse(Call<Student> call, Response<Student> response) {
-                    Student createdStudent = response.body();
-                    Toast.makeText(context, "Created student: " + createdStudent, Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onFailure(Call<Student> call, Throwable t) {
-                    Toast.makeText(context, "ERROR! Could not create student: " + student, Toast.LENGTH_SHORT).show();
-                }
-            });
+            call.enqueue(createCallback("Created student: ", "ERROR! Could not create student: ", true));
         } else {
             Call<Student> call = service.updateStudent(student.getId(), student);
-            call.enqueue(new Callback<Student>() {
-                @Override
-                public void onResponse(Call<Student> call, Response<Student> response) {
-                    Toast.makeText(context, "Updated student: " + student, Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onFailure(Call<Student> call, Throwable t) {
-                    Toast.makeText(context, "ERROR! Could not update student: " + student, Toast.LENGTH_SHORT).show();
-                }
-            });
+            call.enqueue(createCallback("Updated student: ", "ERROR! Could not update student: ", false));
         }
+    }
+
+    private Callback<Student> createCallback(final String responseText, final String errorText, final boolean isCreation) {
+        return new Callback<Student>() {
+            @Override
+            public void onResponse(Call<Student> call, Response<Student> response) {
+                String text = isCreation ? responseText + response.body() : responseText + student;
+                Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Student> call, Throwable t) {
+                Toast.makeText(context, errorText + student, Toast.LENGTH_SHORT).show();
+            }
+        };
     }
 
     private boolean isFieldNotEmpty(EditText field) {

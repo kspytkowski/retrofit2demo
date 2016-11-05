@@ -1,4 +1,4 @@
-package pl.edu.agh.kis.retrofit2demo;
+package pl.edu.agh.kis.retrofit2demo.exercises;
 
 import android.app.FragmentManager;
 import android.content.Context;
@@ -7,8 +7,9 @@ import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
-import pl.edu.agh.kis.retrofit2demo.httpclient.StudentsService;
+import pl.edu.agh.kis.retrofit2demo.R;
 import pl.edu.agh.kis.retrofit2demo.model.Student;
+import pl.edu.agh.kis.retrofit2demo.restservice.StudentsService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -66,4 +67,5 @@ public class PopupMenuButtonOnClickListener implements View.OnClickListener {
             }
         });
     }
+
 }

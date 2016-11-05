@@ -1,4 +1,4 @@
-package pl.edu.agh.kis.retrofit2demo;
+package pl.edu.agh.kis.retrofit2demo.ui;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

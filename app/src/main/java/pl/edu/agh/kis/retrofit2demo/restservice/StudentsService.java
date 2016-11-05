@@ -1,4 +1,4 @@
-package pl.edu.agh.kis.retrofit2demo.httpclient;
+package pl.edu.agh.kis.retrofit2demo.restservice;
 
 import java.util.List;
 import java.util.Map;
