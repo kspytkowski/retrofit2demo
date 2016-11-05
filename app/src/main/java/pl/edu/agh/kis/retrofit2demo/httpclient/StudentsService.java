@@ -24,15 +24,34 @@ public interface StudentsService {
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
+    //  TODO ćw.1
+    //  Napisz sygnaturę metody odpowiedzialnej za pobieranie listy studentów. Metoda powinna
+    //  przyjmować mapę parametrów dołączanych do bazowego URLa, natomiast zwaracać obiekt
+    //  typu Call parametryzowany listą studentów.
+    //  GET http://analyzer-asp2016.rhcloud.com/api/students?sort=[asc/desc/anything(brak sortowania)]
     @GET("students")
     Call<List<Student>> getStudents(@QueryMap Map<String, String> options);
 
+    //  TODO ćw.2
+    //  Napisz sygnaturę metody odpowiedzialnej za tworzenie nowego studenta. Metoda powinna
+    //  przyjmować jako parametr obiekt typu Student i zwracać obiekt typu Call parametryzowany Studentem.
+    //  POST http://analyzer-asp2016.rhcloud.com/api/students
     @POST("students")
     Call<Student> createStudent(@Body Student student);
 
+    //  TODO ćw.2
+    //  Napisz sygnaturę metody odpowiedzialnej za edytowanie istniejącego studenta. Metoda powinna
+    //  przyjmować jako parametr id studenta oraz obiekt typu Student i zwracać obiekt typu Call
+    //  parametryzowany Studentem.
+    //  PUT http://analyzer-asp2016.rhcloud.com/api/students/{id}
     @PUT("students/{id}")
     Call<Student> updateStudent(@Path("id") String id, @Body Student student);
 
+    //  TODO ćw.3
+    //  Napisz sygnaturę metody odpowiedzialnej za usuwanie istniejącego studenta. Metoda powinna
+    //  przyjmować jako parametr id studenta i zwracać obiekt typu Call parametryzowany Studentem.
+    //  Pamiętaj o konieczności dołączenia nagłówka Auth z wartością secret.
+    //  DELETE http://analyzer-asp2016.rhcloud.com/api/students/{id} + Header "Auth: secret"
     @DELETE("students/{id}")
     @Headers("Auth: secret")
     Call<Student> deleteStudent(@Path("id") String id);
