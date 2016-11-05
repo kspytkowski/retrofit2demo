@@ -40,16 +40,12 @@ public interface StudentsService {
     //  Napisz sygnaturę metody odpowiedzialnej za tworzenie nowego studenta. Metoda powinna
     //  przyjmować jako parametr obiekt typu Student i zwracać obiekt typu Call parametryzowany Studentem.
     //  POST http://analyzer-asp2016.rhcloud.com/api/students
-    @POST("students")
-    Call<Student> createStudent(@Body Student student);
 
     //  TODO ćw.2
     //  Napisz sygnaturę metody odpowiedzialnej za edytowanie istniejącego studenta. Metoda powinna
     //  przyjmować jako parametr id studenta oraz obiekt typu Student i zwracać obiekt typu Call
     //  parametryzowany Studentem.
     //  PUT http://analyzer-asp2016.rhcloud.com/api/students/{id}
-    @PUT("students/{id}")
-    Call<Student> updateStudent(@Path("id") String id, @Body Student student);
 
     //  TODO ćw.3
     //  Napisz sygnaturę metody odpowiedzialnej za usuwanie istniejącego studenta. Metoda powinna

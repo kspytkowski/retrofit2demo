@@ -95,28 +95,7 @@ public class StudentEditDialog extends DialogFragment {
     //  o sukcesie lub zaistniałym błędzie (użyj Toast). Musisz tutaj zdecydować czy będziesz
     //  tworzył nowego Studenta, czy może edytował już istniejącego (pomocne może okazać się pole
     //  id klasy Student)
-        if (student.getId() == null) {
-            Call<Student> call = service.createStudent(student);
-            call.enqueue(createCallback("Created student: ", "ERROR! Could not create student: ", true));
-        } else {
-            Call<Student> call = service.updateStudent(student.getId(), student);
-            call.enqueue(createCallback("Updated student: ", "ERROR! Could not update student: ", false));
-        }
-    }
 
-    private Callback<Student> createCallback(final String responseText, final String errorText, final boolean isCreation) {
-        return new Callback<Student>() {
-            @Override
-            public void onResponse(Call<Student> call, Response<Student> response) {
-                String text = isCreation ? responseText + response.body() : responseText + student;
-                Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(Call<Student> call, Throwable t) {
-                Toast.makeText(context, errorText + student, Toast.LENGTH_SHORT).show();
-            }
-        };
     }
 
     private boolean isFieldNotEmpty(EditText field) {
