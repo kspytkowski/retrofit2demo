@@ -18,6 +18,9 @@ import retrofit2.http.QueryMap;
 
 public interface StudentsService {
 
+    //    TODO ćw.1
+    //    Stwórz obiekt typu Retrofit, jako bazowy URL podaj "http://analyzer-asp2016.rhcloud.com/api/",
+    //    natomiast do konwersji obiekt javowy <-> JSON zastosuj Gson'a.
     Retrofit retrofit = new Retrofit
             .Builder()
             .baseUrl("http://analyzer-asp2016.rhcloud.com/api/")
