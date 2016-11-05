@@ -51,9 +51,9 @@ public class PopupMenuButtonOnClickListener implements View.OnClickListener {
     }
 
     private void deleteStudent(final Student student) {
-    //  TODO ćw.3
-    //  Wywołaj odpowiednią metodę z StudentsService (DELETE) i wyświetl użytkownikowi informację
-    //  o sukcesie lub zaistniałym błędzie (użyj Toast)
+        //  TODO ćw.3
+        //  Wywołaj odpowiednią metodę z StudentsService (DELETE) i wyświetl użytkownikowi informację
+        //  o sukcesie lub zaistniałym błędzie (użyj Toast)
         Call<Student> call = service.deleteStudent(student.getId());
         call.enqueue(new Callback<Student>() {
             @Override

@@ -90,11 +90,11 @@ public class StudentEditDialog extends DialogFragment {
     }
 
     private void saveStudent(final Student student) {
-    //  TODO ćw.2
-    //  Wywołaj odpowiednie metody z StudentsService (POST, PUT) i wyświetl użytkownikowi informację
-    //  o sukcesie lub zaistniałym błędzie (użyj Toast). Musisz tutaj zdecydować czy będziesz
-    //  tworzył nowego Studenta, czy może edytował już istniejącego (pomocne może okazać się pole
-    //  id klasy Student)
+        //  TODO ćw.2
+        //  Wywołaj odpowiednie metody z StudentsService (POST, PUT) i wyświetl użytkownikowi informację
+        //  o sukcesie lub zaistniałym błędzie (użyj Toast). Musisz tutaj zdecydować czy będziesz
+        //  tworzył nowego Studenta, czy może edytował już istniejącego (pomocne może okazać się pole
+        //  id klasy Student)
         if (student.getId() == null) {
             Call<Student> call = service.createStudent(student);
             call.enqueue(createCallback("Created student: ", "ERROR! Could not create student: ", true));
